@@ -127,9 +127,9 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
 
         $new_params = $params;
 
-        for ($i=1,$size = count($params);$i<$size;$i++) {
+        for ($index=1,$size = count($params);$index<$size;$index++) {
 
-            $key = array_keys($params)[$i];
+            $key = array_keys($params)[$index];
             $new_key = ucfirst($key);
 
             //remove the current key value pair

@@ -32,20 +32,28 @@ class SanityCest
     protected $max_recs = 3;
 
 
+    // consumer APIs
+    protected $consumer_api = '/conSUMer';
+    protected $consumer_info_api = '/consumerINfo';
+
+    //business APIs
+    protected $business_info_api = '/busiNESSinfo';
+    protected $business_person_contact_api = '/busiNESScontact';
+    protected $ip_info_api = '/ipINfo';
+
+    //data prep apis
+    protected $consumer_identity_score_api = '/consumerIDentityscore';
+    protected $consumer_match_api = '/maTch';
+    protected $consumer_standardization_api ='/consumerstanDARdization';
+
+    // Lookup APIs
     protected $email_info_api = '/eMail';
     protected $phone_lookup_api = '/phONE';
     protected $address_lookup_api = '/ADDreSs';
     protected $ip_lookup_api = '/iP';
 
-    protected $consumer_identity_score_api = '/consumerIDentityscore';
-    protected $consumer_api = '/conSUMer';
-    protected $consumer_info_api = '/consumerINfo';
-    protected $consumer_match_api = '/maTch';
-    protected $consumer_standardization_api ='/consumerstanDARdization';
 
-    protected $business_info_api = '/busiNESSinfo';
-    protected $business_person_contact_api = '/busiNESScontact';
-    protected $ip_info_api = '/ipINfo';
+
 
     public function _before(ApiTester $I)
     {
@@ -78,6 +86,15 @@ class SanityCest
         ];
     }
 
+    protected function businessCampaignUnsupportedProvider()
+    {
+        return [
+            ['campaign_type' => 'CELlPHONE'],
+            ['campaign_type' => 'LaNDLINE'],
+            ['campaign_type' => 'PhONE']
+        ];
+
+    }
 
     protected function businessInfoProvider()
     {
@@ -541,6 +558,29 @@ class SanityCest
     /**
      * @dataProvider businessInfoProvider
      */
+    public function BusinessInfoTickerUnsupportedCampaign(ApiTester $I, \Codeception\Example $business)
+    {
+        $params = [
+            'key' => $I->getBusinessKey(),
+            'ticker' => $business['ticker'],
+            'max_recs' => $this->max_recs,
+            'campaign' => 'BASIC'
+        ];
+
+
+        $I->sendGet($this->business_info_api, $params);
+        $I->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+        $json = json_decode($I->grabResponse(), true, 10);
+
+        $unsupported_option_error_msg_format = "Unsupported option - This API service does not support the '%s' option. Please remove or correct it and try again";
+        $err_msg = sprintf($unsupported_option_error_msg_format, 'campaign');
+
+        $I->assertEquals($json['versium']['errors'][0], $err_msg);
+    }
+
+    /**
+     * @dataProvider businessInfoProvider
+     */
     public function BusinessInfoBusinessName(ApiTester $I, \Codeception\Example $business)
     {
         $params = [
@@ -595,6 +635,32 @@ class SanityCest
         ];
 
         $I->callAPIAndValidateJSON($I, $this->business_person_contact_api, $params);
+    }
+
+    /**
+     * @dataProvider businessCampaignUnsupportedProvider
+     */
+    public function BusinessContactInfoBusinessUnsupportedCampaignTypes(ApiTester $I, \Codeception\Example $campaign)
+    {
+        $params = [
+            'key' => $I->getBusinessKey(),
+            'first' => $this->business_contact_first_name,
+            'last' => $this->business_contact_last_name,
+            'business' => $this->business_contact_business_name,
+            'campaign' => $campaign['campaign_type'],
+            'max_recs' => $this->max_recs
+        ];
+
+
+
+        $I->sendGet($this->business_person_contact_api, $params);
+        $I->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+        $json = json_decode($I->grabResponse(), true, 10);
+
+        $unsupported_option_error_msg_format = "Unsupported input value - The API does not support the value '%s' provided for the 'campaign' option.";
+        $err_msg = sprintf($unsupported_option_error_msg_format, strtolower($campaign['campaign_type']));
+
+        $I->assertEquals($err_msg,$json['versium']['errors'][0]);
     }
 
     /**

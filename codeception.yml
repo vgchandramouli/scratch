@@ -1,0 +1,46 @@
+# suite config
+suites:
+    api:
+        actor: ApiTester
+        path: .
+        modules:
+            enabled:
+                - Asserts
+                - REST:
+                    url: https://api.versium.com/v1.0
+                    depends: PhpBrowser
+                - Helper\TestConfig:
+                    ckey: 'c94e8eeb-af98-43f5-a7e1-483bf28046dc'
+                    bkey: '96408630-a6c8-4530-9060-fd8fe576979c'
+
+        env:
+           staging:
+               modules:        
+                   config:
+                       REST:
+                           url: https://api-staging.versium.com/v1.0
+                       Helper\TestConfig:
+                           ckey: 'faf33d53-ef2c-4fd7-acbc-f58fbf056722'
+                           bkey: 'feaeba05-71e9-4dd7-b902-0219fdd124f7'
+
+           dev:
+               modules:        
+                   config:
+                       REST:
+                               url: https://localhost:5050
+
+extensions:
+  enabled:
+  - Codeception\Extension\RunFailed # default extension
+#  - Codeception\Extension\Logger: # enabled extension
+#      max_files: 5 # logger configuration
+
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+
+settings:
+    shuffle: false
+    lint: true

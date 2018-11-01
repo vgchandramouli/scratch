@@ -111,7 +111,7 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
             }
         }
     }
-
+        $params['output'] = 'Json';
         $this->validateCaseSensitiveParameters($I,$url,$params);
 
         /* xml test */
@@ -120,6 +120,7 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
         $I->sendGet($url,$params);
         $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
         $I->seeResponseIsXml();
+        $this->validateCaseSensitiveParametersXML($I,$url,$params);
 
            }
 
@@ -127,7 +128,7 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
 
         $new_params = $params;
 
-        for ($index=1,$size = count($params);$index<$size;$index++) {
+        for ($index=0,$size = count($params);$index<$size;$index++) {
 
             $key = array_keys($params)[$index];
             $new_key = ucfirst($key);
@@ -139,13 +140,73 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
             $new_params[$new_key] = $params[$key];
 
             $I->sendGet($url, $new_params);
-            $I->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+            if($key == 'key'){
+                $I->seeResponseCodeIs(\Codeception\Util\HttpCode::UNAUTHORIZED);
+            }
+            else {
+                $I->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+            }
             $json = json_decode($I->grabResponse(), true, 10);
 
             $unsupported_option_error_msg_format = "Unsupported option - This API service does not support the '%s' option. Please remove or correct it and try again";
             $err_msg = sprintf($unsupported_option_error_msg_format, $new_key);
 
-            $I->assertEquals($json['versium']['errors'][0], $err_msg);
+            $error_index = 0;
+            if($key == 'key') {
+                $error_index = 1;
+                $err_msg = $err_msg . ".";
+            }
+            $I->assertEquals($json['versium']['errors'][$error_index], $err_msg);
+
+            //retain the original key and value
+            unset($new_params[$new_key]);
+            $new_params[$key] = $params[$key];
+        }
+    }
+
+
+    public function validateCaseSensitiveParametersXML($I,$url,$params) {
+
+        $new_params = $params;
+
+        for ($index=0,$size = count($params);$index<$size;$index++) {
+
+
+            $key = array_keys($params)[$index];
+            if($key == 'output')
+                continue;
+
+            $new_key = ucfirst($key);
+
+            //remove the current key value pair
+            unset($new_params[$key]);
+
+            // add the uppercase first key with the original value
+            $new_params[$new_key] = $params[$key];
+
+            $I->sendGet($url, $new_params);
+            if($key == 'key'){
+                $I->seeResponseCodeIs(\Codeception\Util\HttpCode::UNAUTHORIZED);
+            }
+            else {
+                $I->seeResponseCodeIs(\Codeception\Util\HttpCode::BAD_REQUEST);
+
+            }
+            $I->seeResponseIsXml();
+
+            /*
+            $json = json_decode($I->grabResponse(), true, 10);
+
+            $unsupported_option_error_msg_format = "Unsupported option - This API service does not support the '%s' option. Please remove or correct it and try again";
+            $err_msg = sprintf($unsupported_option_error_msg_format, $new_key);
+
+            $error_index = 0;
+            if($key == 'key') {
+                $error_index = 1;
+                $err_msg = $err_msg . ".";
+            }
+            $I->assertEquals($json['versium']['errors'][$error_index], $err_msg);
+             */
 
             //retain the original key and value
             unset($new_params[$new_key]);

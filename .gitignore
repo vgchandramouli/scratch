@@ -2,3 +2,5 @@ vendor/*
 tests/_output
 *.swp
 .idea/*
+monitoring/.idea/*
+monitoring/output.json

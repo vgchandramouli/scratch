@@ -148,13 +148,15 @@ class TestConfig extends \Codeception\Module # implements  RequiresPackage
             }
             $json = json_decode($I->grabResponse(), true, 10);
 
-            $unsupported_option_error_msg_format = "Unsupported option - This API service does not support the '%s' option. Please remove or correct it and try again";
+
+            $unsupported_option_error_msg_format = "Unsupported option - The '%s' option is not recognized by the API. Correct or remove this option and try again. Note that option keys are case sensitive";
+
             $err_msg = sprintf($unsupported_option_error_msg_format, $new_key);
 
             $error_index = 0;
             if($key == 'key') {
                 $error_index = 1;
-                $err_msg = $err_msg . ".";
+                //$err_msg = $err_msg . ".";
             }
             $I->assertEquals($json['versium']['errors'][$error_index], $err_msg);
 

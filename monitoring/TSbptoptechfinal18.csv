@@ -1,0 +1,111 @@
+d_first,d_last,Title,Email,business,Address,d_city,d_state,d_zip,Country,Phone,domain
+shantanu,narayen,CEO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+john,murphy,CFO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+Dana,Rao,general councel,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+scott,belsky,Chief Product Officer,,adobe,1540 Broadway,new york,ny,10036,us,,www.adobe.com
+Bryan,Lamkin,EVP Digatal Media,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+Ann,Lewnes,CMO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+donna,morris,EVP Customer Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+Abhay,paranis,CTP,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+brad,rencher,EVP Digital Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+matt,thompson,EVP Worldwide Field Ops,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+Gloria,Chen,SVP Stragity and Growth,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
+lisa,su,CEO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+ruth,cotter,SVP Marketing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+robert,gama,SVP HR,,amd,7171 Southwest Pkwy,auttin,tx,78735,us,,www.amd.com
+darren,grasby,SVP Sales and Pres EMEA,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+keivan,keshvari,svp Ops,,amd,7171 Southwest pkwy,austin,tx,78735,us,,www.amd.com
+devinder,kumar,CFO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+saeid,moshkelani,SVP Client Computing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+forrest,norrod,svp embedded solutions,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+mark,papermaster,CTO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+mike,rayfield,SVP Radeon Tech,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+david,wang,SVP Engineering Radeoon,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+harry,wolin,SVP Genearl Councel,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
+tom,leighton,CEO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+rick,mcconnell,President Web Division,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+jim,benson,CFO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+Robert,Blumofe,EVP Platform,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+james,gemmell,EVP HR,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+adam,karon,EVP Media and Carrier Div,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+bill,wheaton,Chief Strategy Officer,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+craig,adams,SVP Security,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+aaron,ahola,General councel,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+monique,bonner,CMO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+fari,ebrahimi,CIO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+paul,joseph,SVP Global Media and Carrier Sales,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+scott,lovett,SVP Global Web Sales,,akamai,444 N Michigan Ave,Chicago,il,60611,us,,www.akamai.com
+ed,mcgowan,SVP finance,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+mani,sundaram,SVP Golbal Service and Support,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+Dane,Walther,SVP Media and Carrier Business,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
+eli,gelman,CEO,,amdocs,2211 Elliott Ave # 400,seattle,wa,98121,us,,www.amdocs.com
+Tamar,Rapaport-dagim,CFO,,amdocs,8 Hapnina St.,Ra'anana,,,Israel,,www.amdocs.com
+shuky,sheffer,President global business,,amdocs,8 Hapnina St.,Ra'anana,,,Israel,,www.amdocs.com
+rajat,raheja,Division President of India Operations,,amdocs,CyberCity Tower 2,Magarpatta City,pune,411013,india,,www.amdocs.com
+Matt,Smith,Secetary,,amdocs,185 Hudson Street,Jersey City,nj,7311,us,,www.amdocs.com
+marvin,edwards,CEO,,commscope,1100 10th Ave Ct SE,hickory,nc,28602,us,,www.commscope.com
+alexander,pease,CFO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+morgan,kurk,COO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+peter,karlsson,SVP Global Sales and Marketing,,commscope,1100 COMMSCOPE PL SE,HICKORY,NC,28602,us,,www.commscope.com
+frank,wyatt,General councel,,commscope,1100 COMMSCOPE PL SE,HICKORY,NC,28602,us,,www.commscope.com
+Brook,Clark,CAO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+Robert,Granow,SVP Global Financial,,commscope,1100 COMMSCOPE PL SE,HICKORY,NC,28602,us,,www.commscope.com
+Robyn,Mingle,SVP HR,,commscope,1100 COMMSCOPE PL SE,HICKORY,NC,28602,us,,www.commscope.com
+philip,armstrong,SVP Coprt Finance,,commscope,1100 COMMSCOPE PL SE,HICKORY,NC,28602,us,,www.commscope.com
+Suzan,Campbell,SVP of Tax,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+bennett,cardwell,svp mobiliity solutions,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+michael,cross,CIO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+Boris,Kokotovic,SVP Quality,,commscope,1100 10th Ave Ct SE,hickory,nc,28602,us,,www.commscope.com
+Jaxon,Lang,SVP Connectivity Solutions Business,,commscope,501 Shenandoah Dr,shakopee,mn,55379,us,,www.commscope.com
+fiona,nolan,SVP Global Marketing,,commscope,Corke Abbey Ave,Cork Great,Wicklow,75082,Ireland,,www.commscope.com
+wendy,taylor,VP Corp Audit Advisory,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
+roger,krone,CEO,,leidos,8193 Old Dorsey Run Rd,Jessup,md,20794,us,,www.leidos.com
+james,reagan,CEO,,leidos,,reston,va,20190,us,,www.leidos.com
+Paul,engola,CAO,,leidos,,reston,va,20190,us,,www.leidos.com
+roy,stevens,Chief of business dev,,leidos,901 D St SW #960,washington,dc,,us,,www.leidos.com
+george,reiter,Chief HR,,leidos,901 D St SW #960,washington,dc,,us,,www.leidos.com
+jerry,howe,EVP General Councel,,leidos,,reston,va,20190,us,,www.leidos.com
+Michele,brown,Chief Ethics officer,,leidos,,reston,va,20190,us,,www.leidos.com
+jim,cantor,CTO,,leidos,,reston,va,20190,us,,www.leidos.com
+kamal,dua,Chief autid exectitve,,leidos,,reston,va,20190,us,,www.leidos.com
+angela,heise,Pres civil group,,leidos,,reston,va,20190,us,,www.leidos.com
+gerry,fasano,presedent defense group,,leidos,,reston,va,20190,us,,www.leidos.com
+vicki,schmanske,pres intelligence group,,leidos,,reston,va,20190,us,,www.leidos.com
+jonathan,scholl,pres heatlh group,,leidos,,reston,va,20190,us,,www.leidos.com
+victor,lund,CEO,,teradata,10713 South Jordan Gateway,South Jordan,ut,84095,us,,www.teradata.com
+oliver,ratzesberger,COO,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+stephen,brost,CTO,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+mark,culhane,CFO,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+dan,harrington,EVP Customer Support,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+laura,nyquist,general councel,,teradata,10000 Innovation Drive,Miamisburgego,OH,45342,us,,www.teradata.com
+eric,tom,CRO,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+martyn,etherington,CMO,,teradata,17095 Via Del Campo,san diego,ca,92127,us,,www.teradata.com
+aneel,bhusri,CEO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+david,duffield,chairman,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+Robynne,sisco,CFO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+Chano,fernandex,co-preseident,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+tom,bogan,CEO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+jim,bozzini,COO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+Christine,cefalo,CMO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+petros,dermetizis,CPO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+ashley,goldsmith,CPO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+joe,korngiebel,CTO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+Diana,Mckenzie,CIO,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+jim,shaughnessy,general counsel,,workday,6110 Stoneridge Mall Road,Pleasanton,ca,94588,us,,www.workday.com
+pat,gelsinger,ceo,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+zane,rowe,CFO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+sanjay,poonen,coo,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+raghu,raghuram,coo,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+rajiv,ramaswami,coo,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+ray,o'farrell,CTO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+maurizio,carli,EVP Sales,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+Shekar,Ayyar,EVP Strategy,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+scott,bajtos,CCO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+jean-pierre,brulard,SVP EMEA,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+claire,dixon,CCO,,vmware,3900 N. Capital of Texas Highway,Austin,tx,78746,us,,www.vmware.com
+duncan,hewett,SVP GM Asia and Japan,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+bask,iyer,CIO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+robin,matlock,CMO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+amy,fliegelman olli,General councel,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com
+brett,shirk,SVP Americas,,vmware,3900 N. Capital of Texas Highway,Austin,tx,78746,us,,www.vmware.com
+betsy,sutter,CPO,,vmware,3401 hillview ave,palo alto,ca,94302,us,,www.vmware.com

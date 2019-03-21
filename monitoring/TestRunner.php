@@ -164,7 +164,7 @@ class TestRunner
 
                 //print_r($response);
 
-                $test['url'] = urldecode($tempURL);
+                $test['url'] = '=HYPERLINK("'.urldecode($tempURL).'")';
                 $test['num-results'] = $response[RESULT]['Versium']['num-results'];
                 //$test['result'] = $response[RESULT];
 
@@ -233,7 +233,7 @@ class TestRunner
                 */
 
             }
-            //break;
+            break;
         }
         fclose($fp);
     }

@@ -34,6 +34,9 @@ define("TICKER", "d_ticker");
 define("DOMAIN", "d_domain");
 
 
+define("RAW_MATCH_CODE","#RawMatchCodes");
+define("EMAIL_ADDRESS","EmailAddr");
+
 class TestRunner
 {
     protected $url;
@@ -139,7 +142,7 @@ class TestRunner
     }
 
 
-    public function runTests($url, $prodid, $cfg_output, $inputParamCombinations, $inputFileName)
+    public function runTests($url, $prodid, $cfg_output, $inputParamCombinations, $outputFields, $inputFileName)
     {
         $data = $this->csv_to_array($inputFileName);
 
@@ -151,7 +154,9 @@ class TestRunner
         fputcsv($fp, array_keys($test));
 
         foreach ($data as $record) {
+
             foreach ($inputParamCombinations as $inputParamCombination) {
+                $test = [];
                 print_r($record);
                 $tempURL = $url;
 
@@ -166,18 +171,26 @@ class TestRunner
 
                 $test['url'] = '=HYPERLINK("'.urldecode($tempURL).'")';
                 $test['num-results'] = $response[RESULT]['Versium']['num-results'];
-                //$test['result'] = $response[RESULT];
 
-                print_r($test);
-                fputcsv($fp, $test);
+
+
 
 
                 $num_results = $response[RESULT]['Versium']['num-results'];
+                for($i=0;$i<$num_results;$i++) {
+                    foreach($outputFields as $outputField) {
 
-                //print_r($num_results);
+                        print_r($response[RESULT]['Versium']['results'][$i]);
+                        if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
+                            $test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
+                        } else {
+                            $test[$outputField.strval($i+1)] ='';
+                        }
+                    }
+                }
+                print_r($test);
+                fputcsv($fp, $test);
 
-
-                //break;
                 /*
                             $tempurl = $url;
                             $response = $this->runTest($tempurl, $params);
@@ -262,5 +275,7 @@ $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME, DOMAIN]
 
 ];
+$outputFields = [RAW_MATCH_CODE,EMAIL_ADDRESS];
+
 $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $fileName);
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);

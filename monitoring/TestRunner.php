@@ -15,12 +15,12 @@ define("PRODID", "prodids");
 
 define("B2B_EMAIL_PRODID", "b2bemail");
 define("EMAIL_PRODID", "email");
-
+define("CFG_MAX_RECORDS","cfg_maxrecs");
 
 define("KEY", 'vkey');
 define("CFG_OUTPUT", "cfg_output");
 define("OUTPUT_STATS2", "stats2");
-
+define("CFG_FOCUS","cfg_focus");
 define("FIRST_NAME","d_first");
 define("LAST_NAME", "d_last");
 define("PHONE", "d_phone");
@@ -32,6 +32,7 @@ define("EMAIL", "d_email");
 define("ADDRESS", "d_fulladdr");
 define("TICKER", "d_ticker");
 define("DOMAIN", "d_domain");
+define("TITLE", "d_title");
 
 
 define("RAW_MATCH_CODE","#RawMatchCodes");
@@ -142,11 +143,11 @@ class TestRunner
     }
 
 
-    public function runTests($url, $prodid, $cfg_output, $inputParamCombinations, $outputFields, $inputFileName)
+    public function runTests($url, $prodid, $cfg_output, $inputParamCombinations, $outputFields, $inputFileName,$focus,$maxresults)
     {
         $data = $this->csv_to_array($inputFileName);
 
-        $csvFileName = 'example.csv';
+        $csvFileName = 'output.csv';
         $fp = fopen($csvFileName, 'w');
 
         $test['url'] = '';
@@ -163,6 +164,8 @@ class TestRunner
                 $params = $this->getParams($record, $inputParamCombination);
                 $params[PRODID] = $prodid;
                 $params[CFG_OUTPUT] = $cfg_output;
+                $params[CFG_FOCUS] = $focus;
+                $params[CFG_MAX_RECORDS] = $maxresults;
 
                 print_r($params);
                 $response = $this->runTest($tempURL, $params);
@@ -246,7 +249,7 @@ class TestRunner
                 */
 
             }
-            break;
+            //break;
         }
         fclose($fp);
     }
@@ -256,7 +259,7 @@ class TestRunner
 
 $main_url = "https://api2b.versium.com/q2.php";
 $fileName = "online-audience-b2c.csv";
-$prodIds = EMAIL_PRODID;
+$prodIds = "busdircb";
 $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME],
     [FIRST_NAME, LAST_NAME, PHONE],
@@ -278,4 +281,26 @@ $inputParamCombinations = [
 $outputFields = [RAW_MATCH_CODE,EMAIL_ADDRESS];
 
 $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
+//$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
+
+
+$fileName = "TSbptoptechfinal18.csv";
+$prodIds = busdircb;
+$inputParamCombinations = [
+    [FIRST_NAME, LAST_NAME,ADDRESS,ZIP,BUSINESS_NAME]
+    //,
+   // [FIRST_NAME, LAST_NAME, DOMAIN]
+
+];
+
+// b2bemail - fn,ln,email,phone,title,bn
+// title was not wrong
+//
+$fileName = "truth_set.csv";
+$outputFields = [RAW_MATCH_CODE];
+// $focus = 'person';
+ $focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName,$focus,$maxresults);
+

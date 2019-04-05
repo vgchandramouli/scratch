@@ -15,13 +15,13 @@ define("PRODID", "prodids");
 
 define("B2B_EMAIL_PRODID", "b2bemail");
 define("EMAIL_PRODID", "email");
-define("CFG_MAX_RECORDS","cfg_maxrecs");
+define("CFG_MAX_RECORDS", "cfg_maxrecs");
 
 define("KEY", 'vkey');
 define("CFG_OUTPUT", "cfg_output");
 define("OUTPUT_STATS2", "stats2");
-define("CFG_FOCUS","cfg_focus");
-define("FIRST_NAME","d_first");
+define("CFG_FOCUS", "cfg_focus");
+define("FIRST_NAME", "d_first");
 define("LAST_NAME", "d_last");
 define("PHONE", "d_phone");
 define("CITY", "d_city");
@@ -35,8 +35,16 @@ define("DOMAIN", "d_domain");
 define("TITLE", "d_title");
 
 
-define("RAW_MATCH_CODE","#RawMatchCodes");
-define("EMAIL_ADDRESS","EmailAddr");
+define("RAW_MATCH_CODE", "#RawMatchCodes");
+define("EMAIL_ADDRESS", "EmailAddr");
+
+define("OUTPUT_BUSINESS_NAME", "BusName");
+define("OUTPUT_ADDRESS", "Address");
+define("OUTPUT_CITY", "City");
+define("OUTPUT_STATE", "State");
+define("OUTPUT_ZIP", "Zip");
+define("OUTPUT_TIME_STAMP", "TimeStamp");
+
 
 class TestRunner
 {
@@ -47,6 +55,21 @@ class TestRunner
     protected $output;
     protected $passed;
 
+    public $input_output_mapping;
+    public $output_input_mapping;
+
+    public function __construct()
+    {
+        // some code here
+        $this->input_output_mapping = [BUSINESS_NAME => OUTPUT_BUSINESS_NAME, ADDRESS => OUTPUT_ADDRESS];
+        $this->output_input_mapping = [
+            OUTPUT_BUSINESS_NAME => BUSINESS_NAME,
+            OUTPUT_ADDRESS => ADDRESS,
+            OUTPUT_CITY => CITY,
+            OUTPUT_STATE => STATE,
+            OUTPUT_ZIP => ZIP
+        ];
+    }
 
     protected function csv_to_array($filename = '', $delimiter = ',')
     {
@@ -143,22 +166,49 @@ class TestRunner
     }
 
 
-    public function runTests($url, $prodid, $cfg_output, $inputParamCombinations, $outputFields, $inputFileName,$focus,$maxresults)
+    public function getEmptyTestRecord($outputFields, $params)
     {
+        $test['url'] = ' ';
+        $test['num-results'] = ' ';
+        foreach ($outputFields as $outputField) {
+            if (isset($this->output_input_mapping[$outputField])) {
+                $test[$this->output_input_mapping[$outputField]] = ' ';
+                if ($params != null) {
+                    if (isset($params[$this->output_input_mapping[$outputField]])) {
+                        $test[$this->output_input_mapping[$outputField]] = $params[$this->output_input_mapping[$outputField]];
+                    }
+                }
+            }
+            $test['Output' . $outputField] = ' ';
+        }
+        return $test;
+    }
+
+    public function runTests(
+        $url,
+        $prodid,
+        $cfg_output,
+        $inputParamCombinations,
+        $outputFields,
+        $inputFileName,
+        $focus,
+        $maxresults
+    ) {
         $data = $this->csv_to_array($inputFileName);
 
         $csvFileName = 'output.csv';
         $fp = fopen($csvFileName, 'w');
 
-        $test['url'] = '';
-        $test['num-results'] = '';
+        $test = $this->getEmptyTestRecord($outputFields, null);
+
+
         fputcsv($fp, array_keys($test));
 
         foreach ($data as $record) {
 
             foreach ($inputParamCombinations as $inputParamCombination) {
-                $test = [];
-                print_r($record);
+
+                //print_r($record);
                 $tempURL = $url;
 
                 $params = $this->getParams($record, $inputParamCombination);
@@ -168,26 +218,28 @@ class TestRunner
                 $params[CFG_MAX_RECORDS] = $maxresults;
 
                 print_r($params);
+                $test = $this->getEmptyTestRecord($outputFields, $params);
                 $response = $this->runTest($tempURL, $params);
 
                 //print_r($response);
 
-                $test['url'] = '=HYPERLINK("'.urldecode($tempURL).'")';
+                $test['url'] = '=HYPERLINK("' . urldecode($tempURL) . '")';
                 $test['num-results'] = $response[RESULT]['Versium']['num-results'];
 
 
+                if ($response[RESULT]['Versium']['is-first-rec-changed'] == 1 || $response[RESULT]['Versium']['first-rec-has-new-attributes'] == 1) {
+                    $num_results = $response[RESULT]['Versium']['num-results'];
 
-
-
-                $num_results = $response[RESULT]['Versium']['num-results'];
-                for($i=0;$i<$num_results;$i++) {
-                    foreach($outputFields as $outputField) {
-
-                        print_r($response[RESULT]['Versium']['results'][$i]);
-                        if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
-                            $test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
-                        } else {
-                            $test[$outputField.strval($i+1)] ='';
+                    for ($i = 0; $i < $num_results; $i++) {
+                        foreach ($outputFields as $outputField) {
+                            print_r($response[RESULT]['Versium']['results'][$i]);
+                            if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
+                                //$test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
+                                $test['Output' . $outputField] = $response[RESULT]['Versium']['results'][$i][$outputField];
+                            } else {
+                                //$test[$outputField.strval($i+1)] ='';
+                                $test['Output' . $outputField] = ' ';
+                            }
                         }
                     }
                 }
@@ -278,18 +330,18 @@ $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME, DOMAIN]
 
 ];
-$outputFields = [RAW_MATCH_CODE,EMAIL_ADDRESS];
+$outputFields = [RAW_MATCH_CODE, EMAIL_ADDRESS];
 
 $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
 //$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
 
 
 $fileName = "TSbptoptechfinal18.csv";
-$prodIds = busdircb;
+$prodIds = "busdircb";
 $inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME,ADDRESS,ZIP,BUSINESS_NAME]
+    [FIRST_NAME, LAST_NAME, ADDRESS, ZIP, BUSINESS_NAME]
     //,
-   // [FIRST_NAME, LAST_NAME, DOMAIN]
+    // [FIRST_NAME, LAST_NAME, DOMAIN]
 
 ];
 
@@ -297,10 +349,19 @@ $inputParamCombinations = [
 // title was not wrong
 //
 $fileName = "truth_set.csv";
-$outputFields = [RAW_MATCH_CODE];
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_ZIP,
+    OUTPUT_TIME_STAMP
+];
 // $focus = 'person';
- $focus = 'business';
+$focus = 'business';
 $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
 $maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName,$focus,$maxresults);
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
 

@@ -44,6 +44,15 @@ define("OUTPUT_CITY", "City");
 define("OUTPUT_STATE", "State");
 define("OUTPUT_ZIP", "Zip");
 define("OUTPUT_TIME_STAMP", "TimeStamp");
+define("OUTPUT_COUNTRY","Country");
+define("OUTPUT_PHONE","Phone");
+define("OUTPUT_DOMAIN","Domain");
+define("OUTPUT_EMAIL_ADDRESSS","EmailAddr");
+define("OUTPUT_FIRST_NAME","FirstName");
+define("OUTPUT_LAST_NAME","LastName");
+define("OUTPUT_TITLE","Title");
+define("OUTPUT_FETCH_TIME","FetchTime");
+
 
 
 class TestRunner
@@ -67,7 +76,13 @@ class TestRunner
             OUTPUT_ADDRESS => ADDRESS,
             OUTPUT_CITY => CITY,
             OUTPUT_STATE => STATE,
-            OUTPUT_ZIP => ZIP
+            OUTPUT_ZIP => ZIP,
+            OUTPUT_PHONE => PHONE,
+            OUTPUT_DOMAIN => DOMAIN,
+            OUTPUT_EMAIL_ADDRESS => EMAIL,
+            OUTPUT_FIRST_NAME => FIRST_NAME,
+            OUTPUT_LAST_NAME => LAST_NAME,
+            OUTPUT_TITLE => TITLE
         ];
     }
 
@@ -166,16 +181,17 @@ class TestRunner
     }
 
 
-    public function getEmptyTestRecord($outputFields, $params)
+    public function getEmptyTestRecord($outputFields, $record)
     {
         $test['url'] = ' ';
         $test['num-results'] = ' ';
         foreach ($outputFields as $outputField) {
             if (isset($this->output_input_mapping[$outputField])) {
                 $test[$this->output_input_mapping[$outputField]] = ' ';
-                if ($params != null) {
-                    if (isset($params[$this->output_input_mapping[$outputField]])) {
-                        $test[$this->output_input_mapping[$outputField]] = $params[$this->output_input_mapping[$outputField]];
+                $test['match'.$outputField] = 0;
+                if ($record != null) {
+                    if (isset($record[$this->output_input_mapping[$outputField]])) {
+                        $test[$this->output_input_mapping[$outputField]] = $record[$this->output_input_mapping[$outputField]];
                     }
                 }
             }
@@ -196,7 +212,7 @@ class TestRunner
     ) {
         $data = $this->csv_to_array($inputFileName);
 
-        $csvFileName = 'output.csv';
+        $csvFileName = 'output'.time().'.csv';
         $fp = fopen($csvFileName, 'w');
 
         $test = $this->getEmptyTestRecord($outputFields, null);
@@ -218,7 +234,7 @@ class TestRunner
                 $params[CFG_MAX_RECORDS] = $maxresults;
 
                 print_r($params);
-                $test = $this->getEmptyTestRecord($outputFields, $params);
+                $test = $this->getEmptyTestRecord($outputFields, $record);
                 $response = $this->runTest($tempURL, $params);
 
                 //print_r($response);
@@ -304,7 +320,9 @@ class TestRunner
             //break;
         }
         fclose($fp);
+        print_r("The report generated in : ".$csvFileName);
     }
+
 
 }
 
@@ -337,7 +355,8 @@ $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
 
 
 $fileName = "TSbptoptechfinal18.csv";
-$prodIds = "busdircb";
+//$prodIds = "busdircb";
+$prodIds = "busdiryp2";
 $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME, ADDRESS, ZIP, BUSINESS_NAME]
     //,
@@ -345,17 +364,21 @@ $inputParamCombinations = [
 
 ];
 
-// b2bemail - fn,ln,email,phone,title,bn
-// title was not wrong
-//
+
+
+/*
 $fileName = "truth_set.csv";
+$prodIds = "busdircb";
 $outputFields = [
     RAW_MATCH_CODE,
     OUTPUT_BUSINESS_NAME,
     OUTPUT_ADDRESS,
     OUTPUT_CITY,
     OUTPUT_STATE,
+    OUTPUT_COUNTRY,
     OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_PHONE,
     OUTPUT_TIME_STAMP
 ];
 // $focus = 'person';
@@ -364,4 +387,266 @@ $cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
 $maxresults = 1;
 $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
     $maxresults);
+*/
 
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "busdiryp2";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+// $focus = 'person';
+$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "licorp";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+// $focus = 'person';
+$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "b2bpeople1";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "lipeople";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_FETCH_TIME
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "b2bpeople2";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_FETCH_TIME
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "b2bpeople3";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_FETCH_TIME
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "kv";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+//$focus = 'person';
+$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',kv';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "b2bporg";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',b2bporg';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "b2bporg,b2bpeople1,b2bpeople2,b2bpeople3,lipeople";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+$focus = 'person';
+//$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+
+$fileName = "truth_set.csv";
+$prodIds = "busdircb";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+$focus = 'person';
+// $focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);

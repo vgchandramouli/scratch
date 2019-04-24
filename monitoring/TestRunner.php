@@ -52,6 +52,8 @@ define("OUTPUT_FIRST_NAME","FirstName");
 define("OUTPUT_LAST_NAME","LastName");
 define("OUTPUT_TITLE","Title");
 define("OUTPUT_FETCH_TIME","FetchTime");
+define("OUTPUT_CORP_NAME","CorpName");
+define("OUTPUT_CORP_DOMAIN","CorpDomain");
 
 
 
@@ -82,7 +84,9 @@ class TestRunner
             OUTPUT_EMAIL_ADDRESS => EMAIL,
             OUTPUT_FIRST_NAME => FIRST_NAME,
             OUTPUT_LAST_NAME => LAST_NAME,
-            OUTPUT_TITLE => TITLE
+            OUTPUT_TITLE => TITLE,
+            OUTPUT_CORP_NAME => BUSINESS_NAME,
+            OUTPUT_CORP_DOMAIN => DOMAIN
         ];
     }
 
@@ -625,7 +629,7 @@ $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations,
     $maxresults);
 */
 
-
+/*
 $fileName = "truth_set.csv";
 $prodIds = "busdircb";
 $outputFields = [
@@ -647,6 +651,56 @@ $outputFields = [
 $focus = 'person';
 // $focus = 'business';
 $cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+/*
+$fileName = "truth_set.csv";
+$prodIds = "busdiryp3";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_DOMAIN,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+// $focus = 'person';
+$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
+$maxresults = 1;
+$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
+    $maxresults);
+*/
+
+
+$fileName = "truth_set.csv";
+$prodIds = "kv";
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_CORP_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_CORP_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+//$focus = 'person';
+$focus = 'business';
+$cfg_output = OUTPUT_STATS2 . ',kv';
 $maxresults = 1;
 $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
     $maxresults);

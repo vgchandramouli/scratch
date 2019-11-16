@@ -158,6 +158,7 @@ class TestRunner
             'cfg_previewmax' => 1
         ];
 
+        print_r($record);
         foreach ($inputParamCombination as $param) {
             $params[$param] = $record[$param];
         }
@@ -239,7 +240,8 @@ class TestRunner
     }
 }
 
-$main_url = "https://api2b.versium.com/kv.php";
+# $main_url = "https://api2b.versium.com/kv.php";
+$main_url = "https://api2b-stg.versium.com/kv.php";
 $inputParamCombinations = [
     [PARAMETER_DOMAIN]
    ];
@@ -247,7 +249,10 @@ $inputParamCombinations = [
 // $fileName = "sp500.csv";
 // $fileName = "kv_public.csv";
 // $fileName = "public_nasdaq.csv";
+// $fileName = "orb.csv";
 $fileName = "cleaned.csv";
+// $fileName = "bwsample.csv";
+// $fileName = "mlxp_domain.csv";
 
 $outputFields = [
     'TickerSymbol',
@@ -259,7 +264,10 @@ $outputFields = [
     'CorpZip',
     'CorpCountry',
     'PublicOrPrivate',
-    'NumEmployees'
+    'NumEmployees',
+    'Industry',
+    'SIC',
+    'SIC2'
 ];
 
 

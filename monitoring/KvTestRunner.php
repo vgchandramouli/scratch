@@ -17,7 +17,8 @@ define("B2B_EMAIL_PRODID", "b2bemail");
 define("EMAIL_PRODID", "email");
 define("CFG_MAX_RECORDS", "cfg_maxrecs");
 
-define("KEY", 'vkey');
+define("K", 'k');
+define("KV_KEY",'u89y7t6rfyty-vis-kv-p');
 define("CFG_OUTPUT", "cfg_output");
 define("OUTPUT_STATS2", "stats2");
 define("CFG_FOCUS", "cfg_focus");
@@ -33,10 +34,8 @@ define("ADDRESS", "d_fulladdr");
 define("TICKER", "d_ticker");
 define("DOMAIN", "d_domain");
 define("TITLE", "d_title");
-define("CFG_MC", "cfg_mc");
-define("CFG_PLOC","cfg_ploc");
-define("CFG_NAMEFRQ","cfg_namefrq");
-define("CFG_NEGMC","cfg_negmc");
+
+
 define("RAW_MATCH_CODE", "#RawMatchCodes");
 define("EMAIL_ADDRESS", "EmailAddr");
 
@@ -56,8 +55,7 @@ define("OUTPUT_TITLE","Title");
 define("OUTPUT_FETCH_TIME","FetchTime");
 define("OUTPUT_CORP_NAME","CorpName");
 define("OUTPUT_CORP_DOMAIN","CorpDomain");
-define("OUTPUT_LI_PROFILE","LIProfileURL");
-define("OUTPUT_SOURCE","Source");
+
 
 
 class TestRunner
@@ -177,11 +175,7 @@ class TestRunner
     protected function getParams($record, $inputParamCombination)
     {
         $params = [
-            KEY => '3b5ac175f8938aec76944acdc8314ec9',
-            CFG_MC => "LF0,C0,S0",
-            CFG_PLOC => "1",
-            CFG_NAMEFRQ => "1",
-            CFG_NEGMC => "-DIST9"
+            K => KV_KEY
         ];
 
         foreach ($inputParamCombination as $param) {
@@ -211,6 +205,7 @@ class TestRunner
         return $test;
     }
 
+    //
     public function runTests(
         $url,
         $prodid,
@@ -241,7 +236,7 @@ class TestRunner
                 $params = $this->getParams($record, $inputParamCombination);
                 $params[PRODID] = $prodid;
                 $params[CFG_OUTPUT] = $cfg_output;
-                $params[CFG_FOCUS] = $focus;
+                //$params[CFG_FOCUS] = $focus;
                 $params[CFG_MAX_RECORDS] = $maxresults;
 
                 print_r($params);
@@ -338,384 +333,34 @@ class TestRunner
 }
 
 
-
-$fileName = "online-audience-b2c.csv";
-$prodIds = "busdircb";
+$main_url = "https://api2b.versium.com/q2.php";
 $inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME],
-    [FIRST_NAME, LAST_NAME, PHONE],
-    [FIRST_NAME, LAST_NAME, ADDRESS]
-];
-$cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-
-$testRunner = new TestRunner();
-# $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $fileName);
-
-
-$fileName = "oracle.csv";
-$prodIds = B2B_EMAIL_PRODID;
-$inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME, TICKER],
-    [FIRST_NAME, LAST_NAME, DOMAIN]
-
-];
-$outputFields = [RAW_MATCH_CODE, EMAIL_ADDRESS];
-
-$cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-//$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
-
-
-$fileName = "TSbptoptechfinal18.csv";
-//$prodIds = "busdircb";
-$prodIds = "busdiryp2";
-
-
-
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "busdircb";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-// $focus = 'person';
-$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "busdiryp2";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-// $focus = 'person';
-$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "licorp";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-// $focus = 'person';
-$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "b2bpeople1";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "lipeople";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_FETCH_TIME
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "b2bpeople2";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_FETCH_TIME
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "b2bpeople3";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_FETCH_TIME
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "kv";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-//$focus = 'person';
-$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',kv';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "b2bporg";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',b2bporg';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "b2bporg,b2bpeople1,b2bpeople2,b2bpeople3,lipeople";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-$focus = 'person';
-//$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "busdircb";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-$focus = 'person';
-// $focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',vstat,lipeople-full,lipexec,email,b2bemail';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-/*
-$fileName = "truth_set.csv";
-$prodIds = "busdiryp3";
-$outputFields = [
-    RAW_MATCH_CODE,
-    OUTPUT_BUSINESS_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_DOMAIN,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP
-];
-// $focus = 'person';
-$focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',busdirdetails'.',busdetails2';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/
-
-// $main_url = "https://api2b.versium.com/q2.php";
-$main_url = "https://api2b-stg.versium.com/q2.php";
-$fileName = "fec.csv";
-// $fileName = "fe-small.csv";
-
-$inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME, CITY, STATE, ZIP, BUSINESS_NAME, TITLE]
+    [FIRST_NAME, LAST_NAME, ADDRESS, ZIP, BUSINESS_NAME]
     //,
     // [FIRST_NAME, LAST_NAME, DOMAIN]
 
 ];
 
-
-$prodIds = "kv";
+$fileName = "truth_set.csv";
+//$prodIds = "u89y7t6rfyty-vis-kv-p";
 $outputFields = [
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
     RAW_MATCH_CODE,
-    OUTPUT_CORP_NAME,
+    OUTPUT_BUSINESS_NAME,
     OUTPUT_ADDRESS,
     OUTPUT_CITY,
     OUTPUT_STATE,
     OUTPUT_COUNTRY,
     OUTPUT_ZIP,
     OUTPUT_CORP_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
     OUTPUT_EMAIL_ADDRESSS,
     OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP,
-    OUTPUT_LI_PROFILE,
-    OUTPUT_SOURCE
+    OUTPUT_TIME_STAMP
 ];
-$focus = 'person';
-// $focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',kv';
+
+
+$cfg_output = OUTPUT_STATS2;
 $maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
+$testRunner->runTests($main_url, $inputParamCombinations, $outputFields, $fileName, $maxresults);

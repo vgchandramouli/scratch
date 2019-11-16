@@ -130,7 +130,7 @@ class TestRunner
     protected function getParams($record)
     {
         $params = [
-            KEY => '96408630-a6c8-4530-9060-fd8fe576979c',
+            K => '96408630-a6c8-4530-9060-fd8fe576979c',
             //KEY => '96408630-a6c8-4530-9060-fd8fe576979',
             TICKER => $record['Ticker']
         ];

@@ -1,48 +1,45 @@
-d_first,d_last,Title,Email,business,Address,d_city,d_state,d_zip,Country,Phone,domain
-shantanu,narayen,CEO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-john,murphy,CFO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-Dana,Rao,general councel,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-scott,belsky,Chief Product Officer,,adobe,1540 Broadway,new york,ny,10036,us,,www.adobe.com
-Bryan,Lamkin,EVP Digatal Media,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-Ann,Lewnes,CMO,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-donna,morris,EVP Customer Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-Abhay,paranis,CTP,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-brad,rencher,EVP Digital Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-matt,thompson,EVP Worldwide Field Ops,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-Gloria,Chen,SVP Stragity and Growth,,adobe,345 Park Avenue,San Jose,ca,95110,us,,www.adobe.com
-lisa,su,CEO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-ruth,cotter,SVP Marketing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-robert,gama,SVP HR,,amd,7171 Southwest Pkwy,auttin,tx,78735,us,,www.amd.com
-darren,grasby,SVP Sales and Pres EMEA,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-keivan,keshvari,svp Ops,,amd,7171 Southwest pkwy,austin,tx,78735,us,,www.amd.com
-devinder,kumar,CFO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-saeid,moshkelani,SVP Client Computing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-forrest,norrod,svp embedded solutions,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-mark,papermaster,CTO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-mike,rayfield,SVP Radeon Tech,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-david,wang,SVP Engineering Radeoon,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-harry,wolin,SVP Genearl Councel,,amd,2485 Augustine Drive,santa clara,ca,95054,us,,www.amd.com
-tom,leighton,CEO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-rick,mcconnell,President Web Division,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-jim,benson,CFO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-Robert,Blumofe,EVP Platform,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-james,gemmell,EVP HR,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-adam,karon,EVP Media and Carrier Div,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-bill,wheaton,Chief Strategy Officer,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-craig,adams,SVP Security,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-aaron,ahola,General councel,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-monique,bonner,CMO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-fari,ebrahimi,CIO,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-paul,joseph,SVP Global Media and Carrier Sales,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-scott,lovett,SVP Global Web Sales,,akamai,444 N Michigan Ave,Chicago,il,60611,us,,www.akamai.com
-ed,mcgowan,SVP finance,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-mani,sundaram,SVP Golbal Service and Support,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-Dane,Walther,SVP Media and Carrier Business,,akamai,150 broadway,cambirdge,ma,2142,us,,www.akamai.com
-eli,gelman,CEO,,amdocs,2211 Elliott Ave # 400,seattle,wa,98121,us,,www.amdocs.com
-Tamar,Rapaport-dagim,CFO,,amdocs,8 Hapnina St.,Ra'anana,,,Israel,,www.amdocs.com
-shuky,sheffer,President global business,,amdocs,8 Hapnina St.,Ra'anana,,,Israel,,www.amdocs.com
-rajat,raheja,Division President of India Operations,,amdocs,CyberCity Tower 2,Magarpatta City,pune,411013,india,,www.amdocs.com
-Matt,Smith,Secetary,,amdocs,185 Hudson Street,Jersey City,nj,7311,us,,www.amdocs.com
+d_first,d_last,Title,Email,d_busname,d_fulladdr,d_city,d_state,d_zip,Country,Phone,d_domain
+shantanu,narayen,CEO,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+john,murphy,CFO,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+Dana,Rao,general councel,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+scott,belsky,Chief Product Officer,,adobe,1540 Broadway,new york,ny,10036,us,4085366000,www.adobe.com
+Bryan,Lamkin,EVP Digatal Media,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+Ann,Lewnes,CMO,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+donna,morris,EVP Customer Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+Abhay,paranis,CTP,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+brad,rencher,EVP Digital Experence,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+matt,thompson,EVP Worldwide Field Ops,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+Gloria,Chen,SVP Stragity and Growth,,adobe,345 Park Avenue,San Jose,ca,95110,us,4085366000,www.adobe.com
+lisa,su,CEO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+ruth,cotter,SVP Marketing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+robert,gama,SVP HR,,amd,7171 Southwest Pkwy,auttin,tx,78735,us,4087494000,www.amd.com
+darren,grasby,SVP Sales and Pres EMEA,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+keivan,keshvari,svp Ops,,amd,7171 Southwest pkwy,austin,tx,78735,us,4087494000,www.amd.com
+devinder,kumar,CFO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+saeid,moshkelani,SVP Client Computing,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+forrest,norrod,svp embedded solutions,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+mark,papermaster,CTO,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+mike,rayfield,SVP Radeon Tech,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+david,wang,SVP Engineering Radeoon,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+harry,wolin,SVP Genearl Councel,,amd,2485 Augustine Drive,santa clara,ca,95054,us,4087494000,www.amd.com
+tom,leighton,CEO,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+rick,mcconnell,President Web Division,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+jim,benson,CFO,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+Robert,Blumofe,EVP Platform,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+james,gemmell,EVP HR,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+adam,karon,EVP Media and Carrier Div,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+bill,wheaton,Chief Strategy Officer,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+craig,adams,SVP Security,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+aaron,ahola,General councel,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+monique,bonner,CMO,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+fari,ebrahimi,CIO,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+paul,joseph,SVP Global Media and Carrier Sales,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+scott,lovett,SVP Global Web Sales,,akamai,444 N Michigan Ave,Chicago,il,60611,us,8773252624,www.akamai.com
+ed,mcgowan,SVP finance,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+mani,sundaram,SVP Golbal Service and Support,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+Dane,Walther,SVP Media and Carrier Business,,akamai,150 broadway,cambirdge,ma,2142,us,8773252624,www.akamai.com
+eli,gelman,CEO,,amdocs,2211 Elliott Ave # 400,seattle,wa,98121,us,3142127000Ê,www.amdocs.com
+Matt,Smith,Secetary,,amdocs,185 Hudson Street,Jersey City,nj,7311,us,3142127000Ê,www.amdocs.com
 marvin,edwards,CEO,,commscope,1100 10th Ave Ct SE,hickory,nc,28602,us,,www.commscope.com
 alexander,pease,CFO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
 morgan,kurk,COO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
@@ -57,7 +54,6 @@ bennett,cardwell,svp mobiliity solutions,,commscope,2601 Telecom Pkwy,Richardson
 michael,cross,CIO,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
 Boris,Kokotovic,SVP Quality,,commscope,1100 10th Ave Ct SE,hickory,nc,28602,us,,www.commscope.com
 Jaxon,Lang,SVP Connectivity Solutions Business,,commscope,501 Shenandoah Dr,shakopee,mn,55379,us,,www.commscope.com
-fiona,nolan,SVP Global Marketing,,commscope,Corke Abbey Ave,Cork Great,Wicklow,75082,Ireland,,www.commscope.com
 wendy,taylor,VP Corp Audit Advisory,,commscope,2601 Telecom Pkwy,Richardson,tx,75082,us,,www.commscope.com
 roger,krone,CEO,,leidos,8193 Old Dorsey Run Rd,Jessup,md,20794,us,,www.leidos.com
 james,reagan,CEO,,leidos,,reston,va,20190,us,,www.leidos.com

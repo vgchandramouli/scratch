@@ -810,7 +810,7 @@ class SanityCest
     /**
      * @dataProvider businessInfoProvider
      */
-    public function IpLookup(ApiTester $I, \Codeception\Example $business)
+    private function IpLookup(ApiTester $I, \Codeception\Example $business)
     {
         $params = [
             'key' => $I->getBusinessKey(),

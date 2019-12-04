@@ -20,7 +20,8 @@ suites:
                        REST:
                            url: https://api-staging.versium.com/v1.0
                        Helper\TestConfig:
-                           ckey: 'faf33d53-ef2c-4fd7-acbc-f58fbf056722'
+                           # ckey: 'faf33d53-ef2c-4fd7-acbc-f58fbf056722'
+                           ckey: '9cf36a6b-5126-4edc-86bd-68ac2efe3e14'
                            bkey: 'feaeba05-71e9-4dd7-b902-0219fdd124f7'
 
            dev:

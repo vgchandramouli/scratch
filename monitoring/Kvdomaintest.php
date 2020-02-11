@@ -172,7 +172,7 @@ class TestRunner
     {
         $params = [
 
-            TITLE_RANK => 4
+           // TITLE_RANK => 4
 
         ];
 
@@ -331,7 +331,10 @@ class TestRunner
 }
 
 
-$main_url = "https://api2b.versium.com/kv.php";
+//$main_url = "https://api2b.versium.com/kv.php";
+$main_url = "https://api2b-stg.versium.com/kv.php";
+
+/*
 $inputParamCombinations = [
     [DOMAIN]
     //,
@@ -358,5 +361,39 @@ $outputFields = [
 $cfg_output = OUTPUT_STATS2;
 $maxresults = 200;
 
+$testRunner = new TestRunner();
+$testRunner->runTests($main_url, $inputParamCombinations, $outputFields, $fileName, $maxresults);
+*/
+
+$fileName = "truth_set.csv";
+//$prodIds = "u89y7t6rfyty-vis-kv-p";
+
+$inputParamCombinations = [
+    [FIRST_NAME, LAST_NAME, ADDRESS, ZIP, BUSINESS_NAME]
+    //,
+    // [FIRST_NAME, LAST_NAME, DOMAIN]
+
+];
+
+$outputFields = [
+    RAW_MATCH_CODE,
+    OUTPUT_BUSINESS_NAME,
+    OUTPUT_ADDRESS,
+    OUTPUT_CITY,
+    OUTPUT_STATE,
+    OUTPUT_COUNTRY,
+    OUTPUT_ZIP,
+    OUTPUT_CORP_DOMAIN,
+    OUTPUT_FIRST_NAME,
+    OUTPUT_LAST_NAME,
+    OUTPUT_TITLE,
+    OUTPUT_EMAIL_ADDRESS,
+    OUTPUT_PHONE,
+    OUTPUT_TIME_STAMP
+];
+
+
+$cfg_output = OUTPUT_STATS2;
+$maxresults = 1;
 $testRunner = new TestRunner();
 $testRunner->runTests($main_url, $inputParamCombinations, $outputFields, $fileName, $maxresults);

@@ -48,7 +48,7 @@ define("OUTPUT_TIME_STAMP", "TimeStamp");
 define("OUTPUT_COUNTRY","Country");
 define("OUTPUT_PHONE","Phone");
 define("OUTPUT_DOMAIN","Domain");
-define("OUTPUT_EMAIL_ADDRESSS","EmailAddr");
+define("OUTPUT_EMAIL_ADDRESS","EmailAddr");
 define("OUTPUT_FIRST_NAME","FirstName");
 define("OUTPUT_LAST_NAME","LastName");
 define("OUTPUT_TITLE","Title");
@@ -208,12 +208,9 @@ class TestRunner
     //
     public function runTests(
         $url,
-        $prodid,
-        $cfg_output,
         $inputParamCombinations,
         $outputFields,
         $inputFileName,
-        $focus,
         $maxresults
     ) {
         $data = $this->csv_to_array($inputFileName);
@@ -234,9 +231,8 @@ class TestRunner
                 $tempURL = $url;
 
                 $params = $this->getParams($record, $inputParamCombination);
-                $params[PRODID] = $prodid;
-                $params[CFG_OUTPUT] = $cfg_output;
-                //$params[CFG_FOCUS] = $focus;
+
+
                 $params[CFG_MAX_RECORDS] = $maxresults;
 
                 print_r($params);
@@ -246,85 +242,88 @@ class TestRunner
                 //print_r($response);
 
                 $test['url'] = '=HYPERLINK("' . urldecode($tempURL) . '")';
-                $test['num-results'] = $response[RESULT]['Versium']['num-results'];
+                $test['num-results'] = $num_results = $response[RESULT]['Versium']['kvstats']['num-results'];
 
 
-                if ($response[RESULT]['Versium']['is-first-rec-changed'] == 1 || $response[RESULT]['Versium']['first-rec-has-new-attributes'] == 1) {
-                    $num_results = $response[RESULT]['Versium']['num-results'];
+                //if ($response[RESULT]['Versium']['is-first-rec-changed'] == 1 || $response[RESULT]['Versium']['first-rec-has-new-attributes'] == 1) {
+                $num_results = $response[RESULT]['Versium']['kvstats']['num-results'];
 
-                    for ($i = 0; $i < $num_results; $i++) {
-                        foreach ($outputFields as $outputField) {
-                            print_r($response[RESULT]['Versium']['results'][$i]);
-                            if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
-                                //$test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
-                                $test['Output' . $outputField] = $response[RESULT]['Versium']['results'][$i][$outputField];
-                            } else {
-                                //$test[$outputField.strval($i+1)] ='';
-                                $test['Output' . $outputField] = ' ';
-                            }
+                for ($i = 0; $i < $num_results; $i++) {
+                    foreach ($outputFields as $outputField) {
+                        print_r($response[RESULT]['Versium']['results'][$i]);
+                        if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
+                            //$test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
+                            $test['Output' . $outputField] = $response[RESULT]['Versium']['results'][$i][$outputField];
+                        } else {
+                            //$test[$outputField.strval($i+1)] ='';
+                            $test['Output' . $outputField] = ' ';
                         }
+
                     }
+                    print_r($test);
+                    fputcsv($fp, $test);
                 }
-                print_r($test);
-                fputcsv($fp, $test);
+            }
 
-                /*
-                            $tempurl = $url;
-                            $response = $this->runTest($tempurl, $params);
 
-                            $test['url'] = urldecode($tempurl);
 
-                            echo "Fetching data for : ";
-                            print_r($test['url']);
-                            echo "\n";
+            /*
+                        $tempurl = $url;
+                        $response = $this->runTest($tempurl, $params);
 
-                            if(empty($response[ERROR])) {
-                                //we got a response back from server
-                                $test['result'] = $response[RESULT];
+                        $test['url'] = urldecode($tempurl);
 
-                                print_r($response);
-                                print_r($result);
-                                $num_results = $response[RESULT]['versium']['num_results'];
+                        echo "Fetching data for : ";
+                        print_r($test['url']);
+                        echo "\n";
 
-                                //print_r($num_results);
-                                if ($num_results == 1) {
-                                    if (strtoupper($record['BusinessName']) === $response[RESULT]['versium']['results'][0]['business']) {
+                        if(empty($response[ERROR])) {
+                            //we got a response back from server
+                            $test['result'] = $response[RESULT];
 
-                                        array_push($report[TEST_RECORDS][PASSED_RECORDS], $test);
-                                    } else {
+                            print_r($response);
+                            print_r($result);
+                            $num_results = $response[RESULT]['versium']['num_results'];
 
-                                        $test['FailureReason'] = "Data Mismatch";
-                                        array_push($report[TEST_RECORDS][FAILED_RECORDS], $test);
-                                    }
-                                } elseif ($num_results == 0) {
+                            //print_r($num_results);
+                            if ($num_results == 1) {
+                                if (strtoupper($record['BusinessName']) === $response[RESULT]['versium']['results'][0]['business']) {
 
-                                    if (array_key_exists(ERRORS, $response[RESULT]['versium'])) {
-                                        $test['FailureReason'] = "Error";
-
-                                    } else {
-                                        $test['FailureReason'] = "No Data";
-                                    }
-                                    array_push($report[TEST_RECORDS][FAILED_RECORDS], $test);
-
+                                    array_push($report[TEST_RECORDS][PASSED_RECORDS], $test);
                                 } else {
 
-                                    $test['FailureReason'] = "Multiple Records";
+                                    $test['FailureReason'] = "Data Mismatch";
                                     array_push($report[TEST_RECORDS][FAILED_RECORDS], $test);
-
                                 }
-                            }
-                            else
-                            {
-                                //curl error has occurred
-                                $test['FailureReason'] = $response[ERROR];
-                                //array_push($report[TEST_RECORDS][NO_RESPONSE_RECORDS], $test);
-                            }
-                            //break;
-                */
+                            } elseif ($num_results == 0) {
 
-            }
-            //break;
+                                if (array_key_exists(ERRORS, $response[RESULT]['versium'])) {
+                                    $test['FailureReason'] = "Error";
+
+                                } else {
+                                    $test['FailureReason'] = "No Data";
+                                }
+                                array_push($report[TEST_RECORDS][FAILED_RECORDS], $test);
+
+                            } else {
+
+                                $test['FailureReason'] = "Multiple Records";
+                                array_push($report[TEST_RECORDS][FAILED_RECORDS], $test);
+
+                            }
+                        }
+                        else
+                        {
+                            //curl error has occurred
+                            $test['FailureReason'] = $response[ERROR];
+                            //array_push($report[TEST_RECORDS][NO_RESPONSE_RECORDS], $test);
+                        }
+                        //break;
+            */
+
         }
+        //break;
+        //}
         fclose($fp);
         print_r("The report generated in : ".$csvFileName);
     }
@@ -333,7 +332,7 @@ class TestRunner
 }
 
 
-$main_url = "https://api2b.versium.com/q2.php";
+$main_url = "https://api2b.versium.com/kv.php";
 $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME, ADDRESS, ZIP, BUSINESS_NAME]
     //,
@@ -355,7 +354,7 @@ $outputFields = [
     OUTPUT_FIRST_NAME,
     OUTPUT_LAST_NAME,
     OUTPUT_TITLE,
-    OUTPUT_EMAIL_ADDRESSS,
+    OUTPUT_EMAIL_ADDRESS,
     OUTPUT_PHONE,
     OUTPUT_TIME_STAMP
 ];
@@ -363,4 +362,5 @@ $outputFields = [
 
 $cfg_output = OUTPUT_STATS2;
 $maxresults = 1;
+$testRunner = new TestRunner();
 $testRunner->runTests($main_url, $inputParamCombinations, $outputFields, $fileName, $maxresults);

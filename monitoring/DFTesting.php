@@ -180,9 +180,10 @@ class TestRunner
     {
         $params = [
             KEY => '3b5ac175f8938aec76944acdc8314ec9',
+
             //,
-             'cfg_ploc' => '1',
-             'cfg_namefrq' => '1'
+             //'cfg_ploc' => '1',
+             //'cfg_namefrq' => '1'
             // CFG_MC => "HHLD"
             // CFG_MC => "P0"
             // CFG_MC => "E0"
@@ -228,7 +229,8 @@ class TestRunner
     ) {
         $data = $this->csv_to_array($inputFileName);
 
-        $csvFileName = $prodid.'_'.$cfg_mc.'_'.time().'.csv';
+        // $csvFileName = $prodid.'_'.$cfg_mc.'_'.time().'.csv';
+        $csvFileName = time().'.csv';
         $fp = fopen($csvFileName, 'w');
 
         $test = $this->getEmptyTestRecord($outputFields, null);
@@ -269,6 +271,12 @@ class TestRunner
                             if (isset($response[RESULT]['Versium']['results'][$i][$outputField])) {
                                 //$test[$outputField.strval($i+1)] = $response[RESULT]['Versium']['results'][$i][$outputField];
                                 $test['Output' . $outputField] = $response[RESULT]['Versium']['results'][$i][$outputField];
+
+                                if(strcasecmp($test[$this->output_input_mapping[$outputField]], $test['Output' . $outputField]) == 0)
+                                {
+                                    $test['match'.$outputField] = 1;
+                                }
+
                             } else {
                                 //$test[$outputField.strval($i+1)] ='';
                                 $test['Output' . $outputField] = ' ';
@@ -293,53 +301,39 @@ class TestRunner
 
 
 $main_url = "https://api2b.versium.com/q2.php";
+# $main_url = "https://api2b.versium.com/q2.php?vkey=3b5ac175f8938aec76944acdc8314ec9&prodids=email,b2bemail,finapp,whois,lipeople&cfg_output=consus,fraudsigid,basic,email,validemail6,tscores,stats2,tablelist&cfg_light=1&cfg_namefrq=1&cfg_mc=INDIV;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S&jobid=61&k=xg2vvo5u9cl4-batch&cfg_required=%23RawMatchCodes";
+# $main_url = "https://api2b.versium.com/q2.php?
+# DONE vkey=3b5ac175f8938aec76944acdc8314ec9&
+# DONE prodids=email,b2bemail,finapp,whois,lipeople&
+# DONE cfg_output=consus,fraudsigid,basic,email,validemail6,tscores,stats2,tablelist&
+#cfg_light=1& Not required?
+#cfg_namefrq=
+# DONEcfg_mc=INDIV;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S&
+#jobid=61& not required ?
+#k=xg2vvo5u9cl4-batch& Not required?
+#cfg_required=%23RawMatchCodes";
 $fileName = "truth_2019.csv";
+
+# $fileName = "truth_2019-small.csv";
 //$prodIds = "auto";
 
+
+
 $inputParamCombinations = [
-    [PHONE]
-    //,
-    // [FIRST_NAME, LAST_NAME, DOMAIN]
-
-];
-$outputFields = [RAW_MATCH_CODE, OUTPUT_FIRST_NAME,OUTPUT_LAST_NAME,OUTPUT_ADDRESS,OUTPUT_CITY,OUTPUT_STATE,OUTPUT_ZIP];
-
-/*
- * $inputParamCombinations = [
     [FIRST_NAME, LAST_NAME, ADDRESS, CITY, STATE, ZIP]
-    //,
-    // [FIRST_NAME, LAST_NAME, DOMAIN]
-
 ];
 $outputFields = [RAW_MATCH_CODE, OUTPUT_EMAIL_ADDRESS,OUTPUT_PHONE];
- */
-
-/*
-$inputParamCombinations = [
-    [PHONE]
-    //,
-    // [FIRST_NAME, LAST_NAME, DOMAIN]
-
-];
-$outputFields = [RAW_MATCH_CODE, OUTPUT_FIRST_NAME,OUTPUT_LAST_NAME,OUTPUT_ADDRESS,OUTPUT_CITY,OUTPUT_STATE,OUTPUT_ZIP];
 
 
-$inputParamCombinations = [
-    [EMAIL]
-    //,
-    // [FIRST_NAME, LAST_NAME, DOMAIN]
 
-];
-$outputFields = [RAW_MATCH_CODE, OUTPUT_FIRST_NAME,OUTPUT_LAST_NAME,OUTPUT_ADDRESS,OUTPUT_CITY,OUTPUT_STATE,OUTPUT_ZIP];
-*/
-$cfg_output = OUTPUT_STATS2 . ',' . 'basic,email';
 $focus = 'person';
 
 $testRunner = new TestRunner();
 // $prodIds_to_test = ['auto','amacaipc','amacaicc','amacaipw','email','cell','consus','finapp','va','telcowp','wparch'/*,'voter','voter2','youngwp,'*/,'tssn'];
 
-$prodIds_to_test = [/*'auto',*/'cell'];
-$cfg_mcs = ['P0'];
+$prodIds_to_test = ['basic,telcowp,cell,cell2,auto,consus'];
+$cfg_mcs = ['INDIV;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S'];
+$cfg_output = 'consus,fraudsigid,basic,email,validemail6,tscores,stats2,tablelist';
 
 # $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
 $maxresults = 1;
@@ -352,57 +346,3 @@ foreach ($prodIds_to_test as $prodId) {
     }
 }
 
-/*
-$fileName = "oracle.csv";
-$prodIds = B2B_EMAIL_PRODID;
-$inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME, TICKER],
-    [FIRST_NAME, LAST_NAME, DOMAIN]
-
-];
-$outputFields = [RAW_MATCH_CODE, EMAIL_ADDRESS];
-
-$cfg_output = OUTPUT_STATS2 . ',' . $prodIds;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
-
-
-
-// $main_url = "https://api2b.versium.com/q2.php";
-$main_url = "https://api2b-stg.versium.com/q2.php";
-$fileName = "fec.csv";
-// $fileName = "fe-small.csv";
-
-$inputParamCombinations = [
-    [FIRST_NAME, LAST_NAME, CITY, STATE, ZIP, BUSINESS_NAME, TITLE]
-    //,
-    // [FIRST_NAME, LAST_NAME, DOMAIN]
-
-];
-
-
-$prodIds = "kv";
-$outputFields = [
-    OUTPUT_FIRST_NAME,
-    OUTPUT_LAST_NAME,
-    OUTPUT_TITLE,
-    RAW_MATCH_CODE,
-    OUTPUT_CORP_NAME,
-    OUTPUT_ADDRESS,
-    OUTPUT_CITY,
-    OUTPUT_STATE,
-    OUTPUT_COUNTRY,
-    OUTPUT_ZIP,
-    OUTPUT_CORP_DOMAIN,
-    OUTPUT_EMAIL_ADDRESSS,
-    OUTPUT_PHONE,
-    OUTPUT_TIME_STAMP,
-    OUTPUT_LI_PROFILE,
-    OUTPUT_SOURCE
-];
-$focus = 'person';
-// $focus = 'business';
-$cfg_output = OUTPUT_STATS2 . ',kv';
-$maxresults = 1;
-$testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields, $fileName, $focus,
-    $maxresults);
-*/

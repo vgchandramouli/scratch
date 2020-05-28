@@ -241,6 +241,7 @@ class TestRunner
 }
 
 # $main_url = "https://api2b.versium.com/kv.php";
+
 $main_url = "https://api2b-stg.versium.com/kv.php";
 $inputParamCombinations = [
     [PARAMETER_DOMAIN]
@@ -267,7 +268,8 @@ $outputFields = [
     'NumEmployees',
     'Industry',
     'SIC',
-    'SIC2'
+    'SIC2',
+    'Ticker match'
 ];
 
 

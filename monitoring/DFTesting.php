@@ -181,12 +181,20 @@ class TestRunner
         $params = [
             KEY => '3b5ac175f8938aec76944acdc8314ec9',
 
-            //,
-             //'cfg_ploc' => '1',
-             //'cfg_namefrq' => '1'
-            // CFG_MC => "HHLD"
-            // CFG_MC => "P0"
-            // CFG_MC => "E0"
+             'cfg_ploc' => '1',
+            // 'cfg_namefrqskip' => '1'
+             'cfg_namefrq' => '1'
+            // 'cfg_minwscorepctgmax' => '20'
+            // 'cfg_query-limit' => '80'
+            // 'cfg_table-limit' => '200'
+            // 'cfg_explain-limit' => '400'
+           // 'cfg_msa-search' => '1'
+           // 'cfg_loc-search' => '40'
+            //'cfg_light' => '1'
+            //'cfg_heavy' => '1'
+            //'cfg_requery' => '1'
+            //'cfg_tablereq' => 'consus'
+
         ];
 
         foreach ($inputParamCombination as $param) {
@@ -331,8 +339,10 @@ $focus = 'person';
 $testRunner = new TestRunner();
 // $prodIds_to_test = ['auto','amacaipc','amacaicc','amacaipw','email','cell','consus','finapp','va','telcowp','wparch'/*,'voter','voter2','youngwp,'*/,'tssn'];
 
-$prodIds_to_test = ['basic,telcowp,cell,cell2,auto,consus'];
-$cfg_mcs = ['INDIV;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S'];
+$prodIds_to_test = ['basic,telcowp,cell,cell2,auto,consus,amacaipc,wparch,amacaicc'];
+$cfg_mcs = ['INDIV;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S']; // indiv
+// $cfg_mcs = ['INDIV;HHLD;H0,L;O0,L;IP0,L;E0,L;P0,L;PINDIV3;PINDIV4;LF0,AHN0,CS;LF0,AHN0,Z0;LF0,AS0,CS;LF0,AS0,Z0;LF,D,S']; //hhld
+
 $cfg_output = 'consus,fraudsigid,basic,email,validemail6,tscores,stats2,tablelist';
 
 # $testRunner->runTests($main_url, $prodIds, $cfg_output, $inputParamCombinations, $outputFields,$fileName);
